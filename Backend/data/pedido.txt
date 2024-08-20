@@ -1,0 +1,2 @@
+idPedido,nombreUsuario,fecha,total
+1,Alina,2024-08-09,36.5

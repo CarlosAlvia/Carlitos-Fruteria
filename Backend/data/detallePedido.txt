@@ -1,0 +1,3 @@
+idPedido,idProducto,cantidad,subtotal
+1,4,2,21
+1,7,1,15.5

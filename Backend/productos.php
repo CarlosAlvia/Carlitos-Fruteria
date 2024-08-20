@@ -1,5 +1,5 @@
 <?php
-include 'helperId.php';
+require_once 'helperId.php';
 
 function getProductos() {
     $productos = [];
@@ -40,4 +40,29 @@ function crearProducto($data) {
     file_put_contents($archivo, $nuevoProducto, FILE_APPEND);
     http_response_code(201);
     echo json_encode(['message' => 'Producto creado con éxito.']);
+}
+
+function getProductosEspecificos() {
+    $productos = [];
+    $ids = isset($_GET['ids']) ? explode(',', $_GET['ids']) : [];
+
+    if (!empty($ids)) {
+        $file = fopen('data/productos.txt', 'r');
+        if ($file) {
+            fgets($file); 
+            while (($linea = fgets($file)) !== false) {
+                $data = explode(',', trim($linea));
+                if (count($data) === 4 && in_array($data[0], $ids)) {
+                    $productos[] = [
+                        'id' => $data[0],
+                        'nombre' => $data[1],
+                        'precioKilo' => $data[2],
+                        'urlimg' => $data[3]
+                    ];
+                }
+            }
+            fclose($file);
+        }
+    }
+    echo json_encode($productos);
 }
