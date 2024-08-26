@@ -59,7 +59,7 @@ export class CarritoComponent implements OnInit{
   }
 
   obtenerTotal(): number {
-    return this.items.reduce((total, item) => total + item.precioKilo * item.cantidad, 0);
+    return this.items.reduce((total, item) => total + item.precioKilo * item.cantidad, 0).toFixed(2);
   }
 
   actualizarCarrito(){
@@ -69,6 +69,12 @@ export class CarritoComponent implements OnInit{
   irAlCatalogo(): void {
     this.router.navigate(['/catalogo']);
   }
+
+  calcularSubtotal(precioKilo: number, cantidad: number): string {
+    const subtotal = precioKilo * cantidad;
+    return subtotal.toFixed(2);
+  }
+
 
   finalizarCompra(): void {
     const nombreUsuario = 'Sofia';

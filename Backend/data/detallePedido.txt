@@ -7,3 +7,5 @@ idPedido,idProducto,cantidad,subtotal
 3,3,5,17.5
 3,4,1,5
 3,8,10,25
+4,5,4,4
+4,8,8,20
