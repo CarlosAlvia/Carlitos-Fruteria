@@ -37,7 +37,7 @@ export class CarritoService {
     localStorage.setItem(this.carritoKey, JSON.stringify(carritoAct));
   }
 
-  crearPedido(pedidoData: any): void {
-    this.http.post(this.bURL + 'crear-pedido', pedidoData, this.optionsJson);
+  crearPedido(pedidoData: any) {
+    return this.http.post(this.bURL + 'crear-pedido', pedidoData, this.optionsJson);
   }
 }

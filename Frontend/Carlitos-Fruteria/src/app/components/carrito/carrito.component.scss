@@ -63,11 +63,7 @@ h4 {
 
 .img-fluid {
     max-width: 80px;
-    height: auto;
-}
-
-.quantity{
-    background-color:white
+    max-height: 80px;
 }
 
 .plus{
@@ -79,4 +75,16 @@ h4 {
 
 .total{
     color:black
+}
+
+.quantity {
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.quantity span {
+    width: 35px;
+    text-align: center;
+    display: inline-block; 
 }

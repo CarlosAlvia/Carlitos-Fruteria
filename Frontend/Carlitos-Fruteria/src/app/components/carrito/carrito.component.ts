@@ -70,8 +70,37 @@ export class CarritoComponent implements OnInit{
     this.router.navigate(['/catalogo']);
   }
 
-  finalizarCompra():void{
-    this.carritoService.vaciarCarrito();
+  finalizarCompra(): void {
+    const nombreUsuario = 'Sofia';
+    const fecha = new Date().toISOString().split('T')[0]; 
+    const productos = this.items.map(item => ({
+      idProducto: item.id,
+      cantidad: item.cantidad,
+      subtotal: item.precioKilo * item.cantidad
+    }));
+
+    const pedidoData = {
+      nombreUsuario,
+      fecha,
+      productos
+    };
+
+    if(this.items.length){
+      this.carritoService.crearPedido(pedidoData).subscribe(
+        response => {
+          alert('Pedido creado con éxito.');
+          this.carritoService.vaciarCarrito();
+          this.items = []; 
+        },
+        error => {
+          console.error('Error al crear el pedido:', error);
+          alert('Hubo un error al crear el pedido. Por favor, inténtelo de nuevo.');
+        }
+      );
+    }else{
+      alert("No hay elementos en el carrito");
+    }
+    
   }
 
 }
