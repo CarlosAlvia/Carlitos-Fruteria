@@ -1,8 +1,8 @@
 id,nombre,precioKilo,urlimg
-1,Uva,1.50,http://example.com/img1.jpg
-2,Manzana,2.50,http://example.com/img2.jpg
-3,Papaya,3.50,http://example.com/img3.jpg
-4,Fresa,5.00,http://example.com/img4.jpg
-5,Kiwi,1.00,http://example.com/img5.jpg
-6,Banana,0.50,http://example.com/img6.jpg
-7,Cacao,4.50,http://example.com/img7.jpg
+1,Uva,1.50,https://i.imgur.com/QqpKF1J.png
+2,Manzana,2.50,https://i.imgur.com/rCTSRFy.png
+3,Papaya,3.50,https://i.imgur.com/CiBFmdo.png
+4,Fresa,5.00,https://i.imgur.com/tcH61wg.png
+5,Kiwi,1.00,https://i.imgur.com/fXV5WhF.png
+6,Banana,0.50,https://i.imgur.com/rxbgqP0.png
+7,Maracuyá,1.50,https://i.imgur.com/WxFxeNf.png

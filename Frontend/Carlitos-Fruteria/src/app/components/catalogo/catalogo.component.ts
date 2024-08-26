@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
 import { CarritoService } from '../../services/carrito.service';
 import { CommonModule } from '@angular/common'; 
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
 import { HeaderComponent } from '../shared/header/header.component';
+
+
 @Component({
   selector: 'app-catalogo',
   standalone: true,
@@ -19,14 +21,14 @@ export class CatalogoComponent implements OnInit {
   mostrarModal: boolean = false;
 
   constructor(private productosService:ProductosService,
-              private carritoService:CarritoService
+              private carritoService:CarritoService,
+              private cdr: ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
     this.productosService.requestProductos().subscribe((info:any)=>{
      this.productos = info;
-     this.productosARenderizar=info;
-    
+     this.productosARenderizar=this.productos.filter(()=>(true));
     })
    }
 
@@ -55,8 +57,22 @@ export class CatalogoComponent implements OnInit {
     this.mostrarModal = false;
   }
 
-  agregarProducto(producto:any){
+  agregarAlCarrito(producto:any){
     this.carritoService.agregarProducto(producto);
   }
   
+  agregarProducto(producto: any): void {
+    console.log(producto);
+    this.productosService.createProducto(producto).subscribe((result:any)=>{
+      console.log(result);
+      if(result["message"] ==="Producto creado con éxito."){
+        alert("Producto creado con éxito");
+        this.productos.push(producto);
+        this.productosARenderizar.push(producto);
+      }else{
+        alert("Hubo un error al crear el producto.")
+      }
+    })
+  }
+
 }
