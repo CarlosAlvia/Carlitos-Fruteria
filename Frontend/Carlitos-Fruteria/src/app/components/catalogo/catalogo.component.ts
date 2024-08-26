@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
+import { CarritoService } from '../../services/carrito.service';
 import { CommonModule } from '@angular/common'; 
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
 import { HeaderComponent } from '../shared/header/header.component';
@@ -16,8 +17,18 @@ export class CatalogoComponent implements OnInit {
   orden: string = "";
   user: string = "admin"
   mostrarModal: boolean = false;
-  
-  constructor(private productosService:ProductosService){}
+
+  constructor(private productosService:ProductosService,
+              private carritoService:CarritoService
+  ){}
+
+  ngOnInit(): void {
+    this.productosService.requestProductos().subscribe((info:any)=>{
+     this.productos = info;
+     this.productosARenderizar=info;
+    
+    })
+   }
 
   search(event: Event): void {
     let searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
@@ -36,14 +47,6 @@ export class CatalogoComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-   this.productosService.requestProductos().subscribe((info:any)=>{
-    this.productos = info;
-    this.productosARenderizar=info;
-    console.log(this.productos);
-   })
-  }
-  
   abrirModalCrearProducto(): void {
     this.mostrarModal = true;
   }
@@ -51,7 +54,9 @@ export class CatalogoComponent implements OnInit {
   cerrarModalCrearProducto(): void {
     this.mostrarModal = false;
   }
-  agregarProducto(producto: any): void {
-    console.log(producto);
+
+  agregarProducto(producto:any){
+    this.carritoService.agregarProducto(producto);
   }
+  
 }
