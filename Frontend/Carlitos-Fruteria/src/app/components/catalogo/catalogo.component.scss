@@ -1,0 +1,47 @@
+.main-wrapper{
+    background-color: #FCDBEF;
+    width: 100%;
+    min-height: 100vh;
+}
+.btn-color{
+    background-color: #941A63;
+}
+.form-control{
+    border: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+.btn-buscar{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    i.fas {
+        color: white;
+    }
+}
+.btn {
+    border: none;
+    color: white;
+}
+.btn:focus, .btn:active, .btn:focus:not(:focus-visible) {
+    outline: none; 
+    box-shadow: none; 
+    border: none;
+    background-color: #941A63;
+}
+.card-text{
+    color: #941A63;
+}
+.card{
+    background-color: #FFEDF8;
+    border: none;
+}
+.card-img-top {
+    width: 100%; 
+    height: 150px;
+    object-fit: contain;
+}
