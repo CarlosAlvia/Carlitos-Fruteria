@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,8 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class CarritoService {
   private carritoKey = 'carrito';
-
-  constructor() { }
+  private bURL: string = 'http://localhost:8000/';
+  private optionsJson: any = { withCredentials: true, responseType: 'json' }
+  private optionsText: any = { withCredentials: true, responseType: 'text' }
+  constructor(private http: HttpClient) { }
 
   obtenerCarrito(): any[] {
     const carritoString = localStorage.getItem(this.carritoKey);
@@ -25,4 +28,16 @@ export class CarritoService {
     }
   }
 
+  vaciarCarrito(): void {
+    localStorage.removeItem(this.carritoKey);
+  }
+
+  sobrescribirCarrito(nuevoCarrito: any[]): void {
+    const carritoAct=nuevoCarrito.map((item) => ({"id":item.id, "cantidad":item.cantidad}))
+    localStorage.setItem(this.carritoKey, JSON.stringify(carritoAct));
+  }
+
+  crearPedido(pedidoData: any): void {
+    this.http.post(this.bURL + 'crear-pedido', pedidoData, this.optionsJson);
+  }
 }
