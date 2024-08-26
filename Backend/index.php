@@ -15,6 +15,9 @@ if (isset($_SERVER["HTTP_ACCESS_CONTROL_REQUEST_HEADERS"]))
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
+if($method == "OPTIONS"){
+    exit(0);
+}
 if ($uri === '/productos' && $method === 'GET') {
   //Si no se establece estado de código, por defecto es 200
   getProductos();

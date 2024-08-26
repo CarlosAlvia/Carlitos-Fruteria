@@ -62,13 +62,12 @@ export class CatalogoComponent implements OnInit {
   }
   
   agregarProducto(producto: any): void {
-    console.log(producto);
+    producto.precioKilo=parseFloat(producto.precioKilo).toFixed(2);
     this.productosService.createProducto(producto).subscribe((result:any)=>{
-      console.log(result);
       if(result["message"] ==="Producto creado con éxito."){
-        alert("Producto creado con éxito");
         this.productos.push(producto);
         this.productosARenderizar.push(producto);
+        alert("Producto creado con éxito");
       }else{
         alert("Hubo un error al crear el producto.")
       }

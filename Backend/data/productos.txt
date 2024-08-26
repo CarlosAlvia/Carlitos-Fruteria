@@ -6,3 +6,4 @@ id,nombre,precioKilo,urlimg
 5,Kiwi,1.00,https://i.imgur.com/fXV5WhF.png
 6,Banana,0.50,https://i.imgur.com/rxbgqP0.png
 7,Maracuyá,1.50,https://i.imgur.com/WxFxeNf.png
+8,Mango,2.50,https://i.imgur.com/vqLpuQ5.png
