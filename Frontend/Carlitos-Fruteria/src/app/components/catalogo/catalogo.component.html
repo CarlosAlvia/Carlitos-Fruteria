@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="main-wrapper">
     <div class="container pt-4">
         <div class="row justify-content-center">
@@ -23,10 +24,10 @@
                             <div class="card">
                                 <img class="card-img-top p-1" src="{{producto.urlimg}}" alt="Card image">
                                 <div class="card-body d-grid">
-                                    <h4 class="card-title text-center">{{producto.nombre}}</h4>
-                                    <h4 class="card-text text-center">${{producto.precioKilo}}/kg</h4>
+                                    <h5 class="card-title text-center">{{producto.nombre}}</h5>
+                                    <h5 class="card-text text-center">${{producto.precioKilo}}/kg</h5>
                                     <button class="btn btn-color btn-block mt-1" type="button">
-                                        <i class="fas fa-cart-shopping me-2"></i> Agregar
+                                        <i class="bi bi-basket3-fill me-2"></i> Agregar
                                     </button>
                                 </div>
                             </div>

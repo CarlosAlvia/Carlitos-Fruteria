@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
 import { CommonModule } from '@angular/common'; 
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
+import { HeaderComponent } from '../shared/header/header.component';
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CommonModule, CrearProductoComponent],
+  imports: [CommonModule, CrearProductoComponent, HeaderComponent],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.scss'
 })
