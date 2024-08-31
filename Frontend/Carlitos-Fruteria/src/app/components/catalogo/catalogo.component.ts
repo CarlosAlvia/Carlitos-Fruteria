@@ -17,7 +17,7 @@ export class CatalogoComponent implements OnInit {
   productos : any = [];
   productosARenderizar : any = [];
   orden: string = "";
-  user: string = "admin"
+  user: string = "sol"
   mostrarModal: boolean = false;
 
   constructor(private productosService:ProductosService,

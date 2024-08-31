@@ -8,10 +8,14 @@ export class ProductosService {
   private optionsJson: any = { withCredentials: true, responseType: 'json' }
   private optionsText: any = { withCredentials: true, responseType: 'text' }
   constructor(private http: HttpClient) { }
+
   requestProductos(){
     return this.http.get(this.bURL+'productos',this.optionsJson);
   }
   createProducto(data:any){
     return this.http.post(this.bURL+'crear-producto',data,this.optionsJson);
+  }
+  obtenerProductosEspecificos(ids:any){
+    return this.http.get(this.bURL+'productos-especificos?ids='+ ids,this.optionsJson);
   }
 }
