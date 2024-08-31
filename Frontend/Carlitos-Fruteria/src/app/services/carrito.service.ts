@@ -22,6 +22,7 @@ export class CarritoService {
       carrito.push({"id":producto.id,"cantidad":1});
       console.log(JSON.stringify(carrito))
       localStorage.setItem(this.carritoKey, JSON.stringify(carrito));
+      alert("Producto agregado al carrito");
     }
   }
 

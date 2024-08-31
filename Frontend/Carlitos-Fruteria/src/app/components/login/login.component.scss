@@ -1,0 +1,28 @@
+body {
+    background-color: #F5E6CC;
+    /* Fondo de la página */
+}
+
+.card {
+    border-radius: 20px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra para el efecto de elevación */
+}
+
+.input-group-text {
+    background-color: #ffffff;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #a74775;
+    /* Color del botón "Ingresar" */
+    border-color: #a74775;
+}
+
+.btn-primary:hover {
+    background-color: #88395f;
+    /* Color al pasar el ratón por encima del botón */
+    border-color: #88395f;
+}

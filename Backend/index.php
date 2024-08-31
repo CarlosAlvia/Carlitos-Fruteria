@@ -1,6 +1,7 @@
 <?php
 include 'productos.php';
 include 'pedido.php';
+include 'usuarios.php';
 
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Vary: Origin');
@@ -18,7 +19,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == "OPTIONS"){
     exit(0);
 }
-if ($uri === '/productos' && $method === 'GET') {
+if($uri === '/login' && $method === 'POST'){
+    $data = json_decode(file_get_contents('php://input'), true);
+    autenticar($data);
+}elseif ($uri === '/productos' && $method === 'GET') {
   //Si no se establece estado de código, por defecto es 200
   getProductos();
 }elseif ($uri === '/crear-producto' && $_SERVER['REQUEST_METHOD'] === 'POST') {
