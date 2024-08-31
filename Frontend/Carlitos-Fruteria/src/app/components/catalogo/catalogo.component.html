@@ -14,7 +14,7 @@
                             <i class="fas fa-arrow-down me-2 pt-1" [style.color]="orden === 'desc' ? '#ef98cd' : 'white'"></i> 
                             Ordenar
                         </button>
-                        <button class="btn btn-color d-flex btn-lg ms-4" *ngIf="user=='admin'" (click)="abrirModalCrearProducto()">
+                        <button class="btn btn-color d-flex btn-lg ms-4" *ngIf="infoUsuario.rol=='admin'" (click)="abrirModalCrearProducto()">
                             <i class="fas fa-add me-2 pt-1"></i> 
                             Agregar
                         </button>

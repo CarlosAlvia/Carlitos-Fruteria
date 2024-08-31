@@ -1,24 +1,21 @@
-body {
-    background-color: #F5E6CC;
-    /* Fondo de la página */
+.main-wrapper{
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url('../../../assets/fondologin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.card {
-    border-radius: 20px;
-    /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra para el efecto de elevación */
-}
-
-.input-group-text {
+.input {
     background-color: #ffffff;
     border: none;
+    border-radius: 50px;
 }
 
 .btn-primary {
-    background-color: #a74775;
-    /* Color del botón "Ingresar" */
-    border-color: #a74775;
+    background-color: #941A63;
+    border-color: #941A63;
 }
 
 .btn-primary:hover {

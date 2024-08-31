@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class ProductosService {
   private bURL: string = 'http://localhost:8000/';
   private optionsJson: any = { withCredentials: true, responseType: 'json' }
-  private optionsText: any = { withCredentials: true, responseType: 'text' }
   constructor(private http: HttpClient) { }
 
   requestProductos(){

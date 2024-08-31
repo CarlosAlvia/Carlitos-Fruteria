@@ -1,3 +1,3 @@
 id,cedula,clave,nombre,rol,telefono,direccion
-1,1111111111,admin,Admin,admin,0912345678,Via Perimetral km. 30.5
-2,0000000000,hola,Carlos,usuario,0912345679,Via Perimetral km. 30.5
+1,1111111111,21232f297a57a5a743894a0e4a801fc3,Admin,admin,0912345678,Via Perimetral km. 30.5
+2,0000000000,4d186321c1a7f0f354b297e8914ab240,Carlos,usuario,0912345679,Via Perimetral km. 30.5

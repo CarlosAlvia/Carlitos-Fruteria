@@ -6,10 +6,10 @@ function autenticar($data){
         echo json_encode(['error' => 'Debe mandar los campos cédula y clave']);
         return;
     }
-    $usuario = buscarUsuario($data['cedula'],$data['clave']);
+    $usuario = buscarUsuario($data['cedula'],md5($data['clave']));
     if(count($usuario) == 3){
-        //Cookie válida por 1 hora y '/' se usa para que la cookie sea válida en toda la pág
-        setcookie('user_info', json_encode($usuario), time() + 3600, '/');
+        //Cookie válida por 10 horas y '/' se usa para que la cookie sea válida en toda la pág
+        setcookie('user_info', json_encode($usuario), time() + 36000, '/');
         echo json_encode(['success' => true,'message' => 'Ingreso correcto']);
     }else{
         echo json_encode(['success' => false, 'message' => 'Identificación o clave incorrecta']);

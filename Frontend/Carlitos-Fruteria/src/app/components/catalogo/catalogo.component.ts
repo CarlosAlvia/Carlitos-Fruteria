@@ -4,6 +4,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { CommonModule } from '@angular/common'; 
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
 import { HeaderComponent } from '../shared/header/header.component';
+import { UsuarioService } from '../../services/usuario.service';
 
 
 @Component({
@@ -17,15 +18,17 @@ export class CatalogoComponent implements OnInit {
   productos : any = [];
   productosARenderizar : any = [];
   orden: string = "";
-  user: string = "sol"
   mostrarModal: boolean = false;
-
+  infoUsuario: any = null;
+  
   constructor(private productosService:ProductosService,
               private carritoService:CarritoService,
+              private usuarioService:UsuarioService,
               private cdr: ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
+    this.infoUsuario = this.usuarioService.getInfoUsuario();
     this.productosService.requestProductos().subscribe((info:any)=>{
      this.productos = info;
      this.productosARenderizar=this.productos.filter(()=>(true));
