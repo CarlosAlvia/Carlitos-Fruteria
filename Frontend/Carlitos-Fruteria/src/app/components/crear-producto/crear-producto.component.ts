@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-crear-producto',
   standalone: true,
@@ -18,12 +19,13 @@ export class CrearProductoComponent {
   @Output() productoCreado = new EventEmitter<any>();
   @Output() modalCerrado = new EventEmitter<void>();
 
+  constructor(private modalService: ModalService){};
   crearProducto(): void {
     if(this.producto.nombre.length && this.producto.urlimg.length){
       this.productoCreado.emit(this.producto);
       this.cerrarModal();
     }else{
-      alert("LLene todos los campos");
+      this.mostrarAlerta("Error","LLene todos los campos");
     }
   }
 
@@ -47,5 +49,9 @@ export class CrearProductoComponent {
       this.producto.precioKilo = value;
     }
     
+  }
+
+  async mostrarAlerta(tipo:string, mensaje:string){
+    await this.modalService.showModal(tipo, mensaje);
   }
 }

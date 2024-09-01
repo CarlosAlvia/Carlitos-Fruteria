@@ -23,4 +23,11 @@ export class HeaderComponent implements OnInit{
   irACarrito(){
     this.router.navigate(["/carrito"]);
   }
+
+  logout(): void {
+    const cookieString = `user_info=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost;`;
+    document.cookie = cookieString;
+    this.router.navigate(["/login"]);
+  }
+  
 }

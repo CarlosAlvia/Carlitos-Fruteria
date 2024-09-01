@@ -35,7 +35,6 @@ export class RegistroComponent {
     textarea.style.height = `${textarea.scrollHeight}px`; // Ajusta la altura al tamaño del contenido
   }
 
-
   validateNumberInput(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);
     if (charCode < 48 || charCode > 57) { // Código ASCII para números de 0-9

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CrearProductoComponent } from '../crear-producto/crear-producto.component';
 import { HeaderComponent } from '../shared/header/header.component';
 import { UsuarioService } from '../../services/usuario.service';
-
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -24,6 +24,7 @@ export class CatalogoComponent implements OnInit {
   constructor(private productosService: ProductosService,
     private carritoService: CarritoService,
     private usuarioService: UsuarioService,
+    private modalService: ModalService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -87,11 +88,14 @@ export class CatalogoComponent implements OnInit {
       if (result["message"] === "Producto creado con éxito.") {
         this.productos.push(producto);
         this.productosARenderizar.push(producto);
-        alert("Producto creado con éxito");
+        this.mostrarAlerta("Éxito","Producto creado con éxito");
       } else {
-        alert("Hubo un error al crear el producto.")
+        this.mostrarAlerta("Error","Hubo un error al crear el producto");
       }
     })
+  }
+  async mostrarAlerta(tipo:string, mensaje:string){
+    await this.modalService.showModal(tipo, mensaje);
   }
 
 }

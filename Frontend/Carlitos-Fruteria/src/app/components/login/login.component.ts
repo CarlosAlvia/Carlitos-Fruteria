@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   clave: string = '';
   infoUsuario: any = null;
   constructor(private router:Router,
-              private usuarioService: UsuarioService
+              private usuarioService: UsuarioService,
+              private modalService: ModalService
   ){}
 
   ngOnInit(): void {
@@ -30,13 +32,16 @@ export class LoginComponent implements OnInit {
       if(info["success"]){
         this.irACatalogo();
       }else{
-        alert("Cédula o clave incorrecta");
-        this.cedula="";
-        this.clave="";
+        this.mostrarError();
       }
     })
   }
 
+  async mostrarError(){
+    this.cedula="";
+    this.clave="";
+    await this.modalService.showModal('Error', 'Credenciales incorrectas');
+  }
   validateNumberInput(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);
     if (charCode < 48 || charCode > 57) {

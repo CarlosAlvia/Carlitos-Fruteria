@@ -5,10 +5,11 @@
         </div>
         <div class="text-white d-flex" >
             <a href="/carrito" *ngIf="infoUsuario.rol!=='admin'">
-                <i class="bi bi-basket3-fill fs-3 me-3"></i>
+                <i class="bi bi-basket3-fill fs-3 me-4"></i>
             </a>
             <i class="bi bi-person-circle fs-3 me-2"></i>
             <h5 class="mt-2">{{infoUsuario.nombre}}</h5>
+            <i class="bi bi-box-arrow-right fs-3 ms-3" (click)="logout()"></i>
         </div>
     </div>
 </nav>
