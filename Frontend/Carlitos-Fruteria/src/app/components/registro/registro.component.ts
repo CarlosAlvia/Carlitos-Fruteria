@@ -23,6 +23,12 @@ export class RegistroComponent {
               private modalService: ModalService
   ){}
 
+  ngOnInit(): void {
+    if(this.usuarioService.getInfoUsuario()){
+      this.irACatalogo();
+    }
+  }
+
   ajustarTextArea(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto'; // Resetea la altura 
@@ -41,6 +47,14 @@ export class RegistroComponent {
     return this.cedula.length === 10 && this.clave.length > 0 && this.nombre.length > 0 && this.telefono.length === 10 && this.direccion.length > 0;
   }
 
+  irACatalogo(){
+    this.router.navigate(["/catalogo"]);
+  }
+
+  irAlLogin(){
+    this.router.navigate(['/login']);
+  }
+  
   onSubmit(): void {
     const data = {
       cedula: this.cedula,
@@ -50,17 +64,16 @@ export class RegistroComponent {
       direccion: this.direccion
     };
 
-    this.usuarioService.registro(data).subscribe((response: any) => {
+    this.usuarioService.registro(data).subscribe(async (response: any) => {
       if (response.success) {
-        this.modalService.showModal('Éxito', 'Usuario creado con éxito. Redirigiendo al login...');
-        this.router.navigate(['/login']);
+        await this.modalService.showModal('Éxito', 'Usuario creado con éxito. Redirigiendo al login...');        this.irAlLogin();
       }
-    }, err => {
+    }, async err => {
       if (err.status === 409) {
-        this.modalService.showModal('Error', 'El usuario ya existe. Redirigiendo al login...');
-        this.router.navigate(['/login']);
+        await this.modalService.showModal('Error', 'El usuario ya existe. Redirigiendo al login...');
+        this.irAlLogin();
       } else {
-        this.modalService.showModal('Error', 'Hubo un problema con el registro. Inténtalo de nuevo.');
+        await this.modalService.showModal('Error', 'Hubo un problema con el registro. Inténtalo de nuevo.');
       }
     });
   }

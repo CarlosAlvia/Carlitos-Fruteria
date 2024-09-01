@@ -107,13 +107,12 @@ export class CarritoComponent implements OnInit{
 
     if(this.items.length){
       this.carritoService.crearPedido(pedidoData).subscribe(
-        response => {
-          this.modalService.showModal('Éxito', 'Pedido creado con éxito.');
+        async response => {
+          await this.modalService.showModal('Éxito', 'Pedido creado con éxito.');
           this.carritoService.vaciarCarrito();
           this.items = []; 
         },
         error => {
-          console.error('Error al crear el pedido:', error);
           this.modalService.showModal('Error', 'Hubo un error al crear el pedido. Por favor, inténtelo de nuevo.');
         }
       );

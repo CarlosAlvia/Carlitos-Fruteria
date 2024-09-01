@@ -5,12 +5,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ModalService {
-  private modalSubject = new Subject<{ title: string, message: string }>();
+  private modalSubject = new Subject<{ title: string, message: string, action: () => void }>();
   modalState$ = this.modalSubject.asObservable();
 
-  constructor() {}
-
-  showModal(title: string, message: string): void {
-    this.modalSubject.next({ title, message });
+  showModal(title: string, message: string): Promise<void> {
+    return new Promise((resolve) => {
+      this.modalSubject.next({
+        title,
+        message,
+        action: resolve 
+      });
+    });
   }
 }

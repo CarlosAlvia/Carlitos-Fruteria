@@ -11,15 +11,17 @@ import * as bootstrap from 'bootstrap';
 export class ModalComponent implements AfterViewInit{
   modalTitle: string = '';
   modalMessage: string = '';
+  private action?: () => void;
   
   @ViewChild('sharedModal') sharedModal!: ElementRef;
 
   constructor(private modalService: ModalService) {}
 
   ngAfterViewInit(): void {
-    this.modalService.modalState$.subscribe(({ title, message }) => {
+    this.modalService.modalState$.subscribe(({ title, message, action }) => {
       this.modalTitle = title;
       this.modalMessage = message;
+      this.action = action;
       if (this.sharedModal) {
         const modalElement = new bootstrap.Modal(this.sharedModal.nativeElement);
         modalElement.show();
@@ -28,4 +30,11 @@ export class ModalComponent implements AfterViewInit{
       }
     });
   }
+
+  onOkClick(): void {
+    if (this.action) {
+      this.action(); 
+    }
+  }
+
 }
