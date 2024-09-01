@@ -2,3 +2,6 @@ id,cedula,clave,nombre,rol,telefono,direccion
 1,1111111111,21232f297a57a5a743894a0e4a801fc3,Admin,admin,0912345678,Via Perimetral km. 30.5
 2,0000000000,4d186321c1a7f0f354b297e8914ab240,Carlos,usuario,0912345679,Via Perimetral km. 30.5
 3,2222222222,12313a3d28f802e3a22b07d2e01c6dcf,Sofia,usuario,1234567891,123 Calle Falsa, Ciudad
+4,8888888888,c893bad68927b457dbed39460e6afd62,Prueba,usuario,2313231231,Dirección de prueba
+5,3456789245,c893bad68927b457dbed39460e6afd62,Prueba,usuario,1234567891,453 Calle Prueba, Ciudad
+6,7878787878,c893bad68927b457dbed39460e6afd62,Prueba,usuario,1214124124,Dirección prueba

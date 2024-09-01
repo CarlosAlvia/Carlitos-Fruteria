@@ -5,7 +5,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
 import { ProductosService } from '../../services/productos.service';
 import { UsuarioService } from '../../services/usuario.service';
-
+import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-carrito',
   standalone: true,
@@ -20,7 +20,8 @@ export class CarritoComponent implements OnInit{
   constructor(private carritoService:CarritoService,
     private productoService:ProductosService,
     private usuarioService: UsuarioService,
-    private router:Router
+    private router:Router,
+    private modalService: ModalService
   ){}
 
   ngOnInit(): void {
@@ -106,18 +107,17 @@ export class CarritoComponent implements OnInit{
 
     if(this.items.length){
       this.carritoService.crearPedido(pedidoData).subscribe(
-        response => {
-          alert('Pedido creado con éxito.');
+        async response => {
+          await this.modalService.showModal('Éxito', 'Pedido creado con éxito.');
           this.carritoService.vaciarCarrito();
           this.items = []; 
         },
         error => {
-          console.error('Error al crear el pedido:', error);
-          alert('Hubo un error al crear el pedido. Por favor, inténtelo de nuevo.');
+          this.modalService.showModal('Error', 'Hubo un error al crear el pedido. Por favor, inténtelo de nuevo.');
         }
       );
     }else{
-      alert("No hay elementos en el carrito");
+      this.modalService.showModal('Error',"No hay elementos en el carrito");
     }
     
   }
