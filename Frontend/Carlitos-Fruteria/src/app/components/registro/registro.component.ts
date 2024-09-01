@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -18,7 +19,8 @@ export class RegistroComponent {
   direccion: string = '';
   infoUsuario: any = null;
   constructor(private router:Router,
-              private usuarioService: UsuarioService
+              private usuarioService: UsuarioService,
+              private modalService: ModalService
   ){}
 
   ajustarTextArea(event: Event) {
@@ -50,15 +52,15 @@ export class RegistroComponent {
 
     this.usuarioService.registro(data).subscribe((response: any) => {
       if (response.success) {
-        alert("Usuario creado con éxito. Redirigiendo al login...");
+        this.modalService.showModal('Éxito', 'Usuario creado con éxito. Redirigiendo al login...');
         this.router.navigate(['/login']);
       }
     }, err => {
       if (err.status === 409) {
-        alert("El usuario ya existe. Redirigiendo al login...");
+        this.modalService.showModal('Error', 'El usuario ya existe. Redirigiendo al login...');
         this.router.navigate(['/login']);
       } else {
-        alert("Hubo un problema con el registro. Inténtalo de nuevo.");
+        this.modalService.showModal('Error', 'Hubo un problema con el registro. Inténtalo de nuevo.');
       }
     });
   }
