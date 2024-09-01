@@ -1,0 +1,30 @@
+.main-wrapper{
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url('../../../assets/fondologin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.input {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50px;
+}
+
+.btn-primary {
+    background-color: #941A63;
+    border-color: #941A63;
+}
+
+.btn-primary:hover {
+    background-color: #88395f;
+    border-color: #88395f;
+}
+
+.auto-expand {
+    overflow: hidden;
+    resize: none; 
+    height: auto; 
+}

@@ -13,6 +13,10 @@ export class UsuarioService {
     return this.http.post(this.bURL+"login",data,this.optionsJson);
   }
 
+  registro(data:any){
+    return this.http.post(this.bURL+"registro",data,this.optionsJson);
+  }
+
   getInfoUsuario(){
     const cookieValue = this.getCookie('user_info');
     if (cookieValue) {

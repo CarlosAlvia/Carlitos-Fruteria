@@ -2,9 +2,9 @@
 require_once 'helperId.php';
 
 function crearPedido($pedidoData) {
-    if (!isset($pedidoData['nombreUsuario']) || !isset($pedidoData['fecha']) || !isset($pedidoData['productos']) || !is_array($pedidoData['productos'])) {
+    if (!isset($pedidoData['idUsuario']) || !isset($pedidoData['fecha']) || !isset($pedidoData['productos']) || !is_array($pedidoData['productos'])) {
         http_response_code(400);
-        echo json_encode(['error' => 'Los campos nombreUsuario, fecha y productos son obligatorios.']);
+        echo json_encode(['error' => 'Los campos idUsuario, fecha y productos son obligatorios.']);
         return;
     }
 
@@ -15,7 +15,7 @@ function crearPedido($pedidoData) {
 
     $total = array_sum(array_column($pedidoData['productos'], 'subtotal'));
 
-    $nuevoPedido = "{$nuevoIdPedido},{$pedidoData['nombreUsuario']},{$pedidoData['fecha']},{$total}\n";
+    $nuevoPedido = "{$nuevoIdPedido},{$pedidoData['idUsuario']},{$pedidoData['fecha']},{$total}\n";
     file_put_contents($archivoPedido, $nuevoPedido, FILE_APPEND);
 
     foreach ($pedidoData['productos'] as $producto) {

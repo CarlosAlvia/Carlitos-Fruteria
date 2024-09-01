@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
 import { ProductosService } from '../../services/productos.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-carrito',
@@ -14,14 +15,22 @@ import { ProductosService } from '../../services/productos.service';
 })
 export class CarritoComponent implements OnInit{
   items:any[]=[];
+  userId: string | null = null; 
 
   constructor(private carritoService:CarritoService,
     private productoService:ProductosService,
+    private usuarioService: UsuarioService,
     private router:Router
   ){}
 
   ngOnInit(): void {
-    this.cargarIndicesCarrito()
+    this.cargarIndicesCarrito();
+    this.obtenerUsuarioId();
+  }
+
+  obtenerUsuarioId() {
+    const usuarioInfo = this.usuarioService.getInfoUsuario();
+    this.userId = usuarioInfo ? usuarioInfo.id : null;
   }
 
   cargarIndicesCarrito() {
@@ -77,8 +86,12 @@ export class CarritoComponent implements OnInit{
 
 
   finalizarCompra(): void {
-    const nombreUsuario = 'Sofia';
-    const fecha = new Date().toISOString().split('T')[0]; 
+    if (!this.userId) {
+      alert("No se pudo obtener el ID del usuario. Por favor, inicia sesión.");
+      return;
+    }
+
+    const fecha = new Date().toLocaleDateString('en-CA');
     const productos = this.items.map(item => ({
       idProducto: item.id,
       cantidad: item.cantidad,
@@ -86,7 +99,7 @@ export class CarritoComponent implements OnInit{
     }));
 
     const pedidoData = {
-      nombreUsuario,
+      idUsuario: this.userId,
       fecha,
       productos
     };

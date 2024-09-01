@@ -22,9 +22,12 @@ if($method == "OPTIONS"){
 if($uri === '/login' && $method === 'POST'){
     $data = json_decode(file_get_contents('php://input'), true);
     autenticar($data);
+}elseif($uri === '/registro' && $method === 'POST'){
+    $data = json_decode(file_get_contents('php://input'), true);
+    registrarUsuario($data);
 }elseif ($uri === '/productos' && $method === 'GET') {
-  //Si no se establece estado de código, por defecto es 200
-  getProductos();
+    //Si no se establece estado de código, por defecto es 200
+    getProductos();
 }elseif ($uri === '/crear-producto' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     crearProducto($data);

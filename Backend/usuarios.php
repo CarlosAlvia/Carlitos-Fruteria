@@ -33,3 +33,33 @@ function buscarUsuario($cedula,$clave){
     fclose($archivo);
     return $usuario;
 }
+
+function registrarUsuario($data) {
+    $archivo = "data/usuarios.txt";
+
+    if(!isset($data['cedula']) || !isset($data['clave']) || !isset($data['nombre']) || !isset($data['telefono']) || !isset($data['direccion'])){
+        http_response_code(400);
+        echo json_encode(['error' => 'Debe mandar los campos cédula, clave, nombre, teléfono y dirección']);
+        return;
+    }
+
+    $lineas = file($archivo);
+    foreach ($lineas as $linea) {
+        $datos = explode(",", trim($linea));
+        if ($datos[1] == $data['cedula']) {
+            http_response_code(409);
+            echo json_encode(['success' => false, 'message' => 'El usuario ya existe']);
+            return;
+        }
+    }
+
+    $nuevoId = obtenerUltimoId($archivo) + 1;
+    $clave_encriptada = md5($data['clave']);
+    // El rol por defecto es 'usuario'
+    $rol = 'usuario';
+    
+    $nuevoUsuario = "$nuevoId,{$data['cedula']},$clave_encriptada,{$data['nombre']},$rol,{$data['telefono']},{$data['direccion']}\n";
+    file_put_contents($archivo, $nuevoUsuario, FILE_APPEND);
+    
+    echo json_encode(['success' => true, 'message' => 'Usuario registrado correctamente']);
+}
