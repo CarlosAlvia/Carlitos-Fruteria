@@ -16,16 +16,16 @@ export class CarritoService {
     return carritoString ? JSON.parse(carritoString) : [];
   }
 
-  agregarProducto(producto: any): void {
+  agregarProducto(producto: any): boolean {
     const carrito = this.obtenerCarrito();
     const productoExistente = carrito.find((p: any) => p.id === producto.id);
     if (productoExistente) {
-      alert('El producto ya está en el carrito.');
+      return false;
     } else {
       carrito.push({"id":producto.id,"cantidad":1});
       console.log(JSON.stringify(carrito))
       localStorage.setItem(this.carritoKey, JSON.stringify(carrito));
-      alert("Producto agregado al carrito");
+      return true;
     }
   }
 

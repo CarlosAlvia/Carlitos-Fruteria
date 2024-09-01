@@ -37,9 +37,15 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  validateNumberInput(event: KeyboardEvent) {
+    const charCode = event.key.charCodeAt(0);
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
   isFormValid(): boolean {
     return this.cedula.length === 10 && this.clave.length > 0;
-    
   }
 
   irACatalogo(){
